@@ -2,3 +2,4 @@
 ^manifest\.scm$
 ^\.editorconfig$
 ^\.github$
+^codecov\.yml$
