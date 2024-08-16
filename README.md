@@ -7,7 +7,7 @@
 [![codecov.io](https://img.shields.io/codecov/c/github/umg-minai/minair.svg?branch=main)](https://codecov.io/github/umg-minai/minair/?branch=main)
 <!-- badges: end -->
 
-A reader for logbook and trend data exported from Draeger anaesthesia machines.
+R utilities and functions used in the Medizinische Informatik working group at the Klinik für Anästhesie, Universitätsmedizin Greifswald.
 
 ## Bootstrap
 
