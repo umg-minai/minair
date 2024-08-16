@@ -1,0 +1,22 @@
+Package: minair
+Title: minai r utils
+Version: 0.0.0
+Authors@R:
+    person(
+        given = "Sebastian", family = "Gibb",
+        email="mail@sebastiangibb.de",
+        comment=c(ORCID="0000-0001-7406-4443"),
+        role = c("aut", "cre")
+    )
+Description: R utilities and functions used in the
+    Medizinische Informatik working group at
+    the Klinik für Anästhesie, Universitätsmedizin Greifswald.
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports:
+    rprojroot
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
