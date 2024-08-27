@@ -1,6 +1,6 @@
 Package: minair
 Title: minai r utils
-Version: 0.0.0
+Version: 0.0.2
 Authors@R:
     person(
         given = "Sebastian", family = "Gibb",
@@ -14,7 +14,7 @@ Description: R utilities and functions used in the
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports:
     rprojroot
 Suggests:

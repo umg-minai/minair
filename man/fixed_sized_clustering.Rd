@@ -4,12 +4,14 @@
 \alias{fixed_sized_clustering}
 \title{Create clusters of fixed size}
 \usage{
-fixed_sized_clustering(d, size)
+fixed_sized_clustering(d, size, method = c("max", "min"))
 }
 \arguments{
 \item{d}{\code{dist}, dissimilarity structure as produced by \code{dist}.}
 
 \item{size}{\code{integer}, fixed target size of the clusters.}
+
+\item{method}{\code{character}, start with the closest (min)/farest (max) point in average.}
 }
 \value{
 \code{integer}, vector of the same length as \code{attr(d, "Size")}
@@ -22,4 +24,8 @@ Create clusters of fixes size using the nearest neighbor approach.
 x <- c(1:3, 1e4, 11:13, 1.1e4, 111:113)
 d <- dist(x)
 fixed_sized_clustering(d, size = 3)
+}
+\references{
+Algorithm taken from Jean Monlong
+\url{https://github.com/jmonlong/Hippocamplus/blob/master/content/post/2018-06-09-ClusterEqualSize.Rmd}
 }
