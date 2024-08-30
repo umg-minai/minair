@@ -10,6 +10,7 @@
 #' @references
 #' Algorithm taken from Jean Monlong
 #' \url{https://github.com/jmonlong/Hippocamplus/blob/master/content/post/2018-06-09-ClusterEqualSize.Rmd}
+#' @importFrom utils head
 #' @export
 #' @rdname fixed_size_clustering
 #' @examples
