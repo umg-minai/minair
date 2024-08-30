@@ -11,7 +11,7 @@ fixed_sized_clustering(d, size, method = c("max", "min"))
 
 \item{size}{\code{integer}, fixed target size of the clusters.}
 
-\item{method}{\code{character}, start with the closest (min)/farest (max) point in average.}
+\item{method}{\code{character}, start with the closest (min)/farthest (max) point in average.}
 }
 \value{
 \code{integer}, vector of the same length as \code{attr(d, "Size")}

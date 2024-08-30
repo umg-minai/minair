@@ -4,7 +4,7 @@
 
 ## Changes in 0.0.2
 
-- `fixed_size_cluster`: allow to choose closest/farest point as starting point.
+- `fixed_size_cluster`: allow to choose closest/farthest point as starting point.
 
 ## Changes in 0.0.1
 

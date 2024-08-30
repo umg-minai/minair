@@ -4,7 +4,7 @@
 #'
 #' @param d `dist`, dissimilarity structure as produced by `dist`.
 #' @param size `integer`, fixed target size of the clusters.
-#' @param method `character`, start with the closest (min)/farest (max) point in average.
+#' @param method `character`, start with the closest (min)/farthest (max) point in average.
 #' @return `integer`, vector of the same length as `attr(d, "Size")`
 #'  with cluster identification numbers.
 #' @references
