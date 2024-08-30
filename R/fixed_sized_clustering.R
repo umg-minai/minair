@@ -28,18 +28,15 @@ fixed_sized_clustering <- function(d, size, method = c("max", "min")) {
     method <- match.arg(method)
 
     cl <- rep.int(NA_integer_, nr)
-    ncl <- ceiling(nr / size[1L])
-    sizes <- rep.int(size[1L], ncl)
 
-    remainder <- nr %% size[1L]
-
-    if (as.logical(remainder))
-        sizes[1L] <- remainder
+    sizes <- .cluster_size(nr, size)
 
     already_selected <- -Inf
 
     if (method == "min") {
         already_selected <- -already_selected
+    } else {
+        ## start with the cluster with the lowest size for the farthest points
         sizes <- rev(sizes)
     }
 
@@ -48,7 +45,7 @@ fixed_sized_clustering <- function(d, size, method = c("max", "min")) {
     while (anyNA(cl)) {
         rs <- rowSums(dist_mat, na.rm = TRUE)
 
-        ## start with cluster closest/farest away in average
+        ## start with cluster closest/farthest away in average
         if (method == "max")
             i <- which.max(rs)
         else
@@ -69,4 +66,30 @@ fixed_sized_clustering <- function(d, size, method = c("max", "min")) {
     }
 
     cl
+}
+
+#' Create vector of equal cluster sizes
+#'
+#' Create vector of equal cluster sizes except the last one, which take the
+#' remainder.
+#'
+#' @param n `integer(1)`, number of elements to be clustered
+#' @param size `integer(1)`, target size of each cluster.
+#' @return `integer(k)`, where `k` is the number of clusters and each element in
+#' the vector store the size of the cluster.
+#' @noRd
+.cluster_size <- function(n, size) {
+    if (size > n)
+        stop("cluster size 'size' has to be smaller ",
+             "or equal than number of elements")
+
+    k <- ceiling(n / size[1L])
+    sizes <- rep.int(size[1L], k)
+
+    remainder <- n %% size[1L]
+
+    if (as.logical(remainder))
+        sizes[length(sizes)] <- remainder
+
+    sizes
 }

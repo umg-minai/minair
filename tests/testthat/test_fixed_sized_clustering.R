@@ -13,3 +13,9 @@ test_that("fixed_sized_clustering", {
     )
     expect_equal(fixed_sized_clustering(d, size = length(x)), rep(1, length(x)))
 })
+
+test_that(".cluster_size", {
+    expect_error(.cluster_size(10, 20), "has to be smaller")
+    expect_equal(.cluster_size(4, 2), c(2, 2))
+    expect_equal(.cluster_size(4, 3), c(3, 1))
+})
