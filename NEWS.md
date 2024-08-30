@@ -2,6 +2,11 @@
 
 ## Changes in development version
 
+## Changes in 0.0.4
+
+- Import "head" in NAMESPACE
+- Use `set.seed` in unit tests to avoid failure on different runs for `kmeans`.
+
 ## Changes in 0.0.3
 
 - Add `fixed_size_clustering_kmeans`.
