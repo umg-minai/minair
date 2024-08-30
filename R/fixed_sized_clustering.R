@@ -14,8 +14,9 @@
 #' @examples
 #' x <- c(1:3, 1e4, 11:13, 1.1e4, 111:113)
 #' d <- dist(x)
-#' fixed_sized_clustering(d, size = 3)
-fixed_sized_clustering <- function(d, size, method = c("max", "min")) {
+#' fixed_sized_clustering_nearest_neighbor(d, size = 3)
+fixed_sized_clustering_nearest_neighbor <-
+    function(d, size, method = c("max", "min")) {
     if (!inherits(d, "dist"))
         stop("'d' has to be a dissimilarity 'dist' structure.")
 
