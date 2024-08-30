@@ -5,4 +5,5 @@
     "r-roxygen2"
     "r-rprojroot"
     "r-testthat"
-    "r-usethis"))
+    "r-usethis"
+    "r-withr"))

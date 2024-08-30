@@ -25,15 +25,23 @@ test_that("fixed_size_clustering_kmeans", {
         fixed_size_clustering_kmeans(x, size = 12), "lower than"
     )
     expect_equal(
-        fixed_size_clustering_kmeans(x, size = 3, "range"),
+        withr::with_seed(
+            123, fixed_size_clustering_kmeans(x, size = 3, "range")
+        ),
         c(rep(1L, 3), 4, rep(2L, 3), 4, rep(3L, 3))
     )
+    set.seed(123)
     expect_equal(
-        fixed_size_clustering_kmeans(x, size = 3, "min"),
+        withr::with_seed(
+            123, fixed_size_clustering_kmeans(x, size = 3, "min")
+        ),
         c(rep(1L, 3), 4, rep(2L, 3), 4, rep(3L, 3))
     )
+    set.seed(123)
     expect_equal(
-        fixed_size_clustering_kmeans(x, size = 3, "max"),
+        withr::with_seed(
+            123, fixed_size_clustering_kmeans(x, size = 3, "max")
+        ),
         c(rep(1L, 3), 4, rep(2L, 3), 4, rep(3L, 3))
     )
     expect_equal(
