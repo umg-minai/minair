@@ -2,6 +2,9 @@
 
 ## Changes in development version
 
+- Add `within_cluster_sum_of_squares` and `total_sum_of_squares` to evaluate
+  clustering methods.
+
 ## Changes in 0.0.4
 
 - Import "head" in NAMESPACE

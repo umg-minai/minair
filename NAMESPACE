@@ -3,6 +3,8 @@
 export(find_git_root_file)
 export(fixed_size_clustering_kmeans)
 export(fixed_size_clustering_nearest_neighbor)
+export(total_sum_of_squares)
+export(within_cluster_sum_of_squares)
 importFrom(rprojroot,is_git_root)
 importFrom(stats,kmeans)
 importFrom(utils,head)
