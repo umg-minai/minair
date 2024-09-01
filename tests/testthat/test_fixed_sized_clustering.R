@@ -59,7 +59,7 @@ test_that("fixed_size_clustering_hclust", {
     )
     expect_equal(
         fixed_size_clustering_hclust(d, size = 3),
-        c(rep(3L, 3), 1, rep(4L, 3), 1, rep(2L, 3))
+        c(rep(1L, 3), 4L, rep(2L, 3), 4L, rep(3L, 3))
     )
     expect_equal(
         fixed_size_clustering_hclust(d, size = length(x)),
