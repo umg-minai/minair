@@ -26,10 +26,11 @@ fixed_size_clustering_hclust(d, size, method = "ward.D2")
 with cluster identification numbers.
 }
 \description{
-Create clusters of fixes size using the nearest neighbor approach.
+Create clusters of fixed size using the nearest neighbor approach.
 }
 \details{
-This algorithm runs \verb{[stats::kmeans]} once to determine the center position
+\code{fixed_size_clustering_kmeans}:
+This algorithm runs \verb{[stats::kmeans()]} once to determine the center position
 and reassigns the points to the nearest center with respect to the cluster
 size. The \code{kmeans} could run multiple times to update every center after a
 cluster was filled but we used the current approach for simplicity.

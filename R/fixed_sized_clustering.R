@@ -1,6 +1,6 @@
 #' Create clusters of fixed size
 #'
-#' Create clusters of fixes size using the nearest neighbor approach.
+#' Create clusters of fixed size using the nearest neighbor approach.
 #'
 #' @param d `dist`, dissimilarity structure as produced by `dist`.
 #' @param size `integer`, fixed target size of the clusters.
@@ -74,7 +74,8 @@ fixed_size_clustering_nearest_neighbor <-
 #' @param x `numeric`/`matrix`, points to be clustered.
 #'
 #' @details
-#' This algorithm runs `[stats::kmeans]` once to determine the center position
+#' `fixed_size_clustering_kmeans`:
+#' This algorithm runs `[stats::kmeans()]` once to determine the center position
 #' and reassigns the points to the nearest center with respect to the cluster
 #' size. The `kmeans` could run multiple times to update every center after a
 #' cluster was filled but we used the current approach for simplicity.
