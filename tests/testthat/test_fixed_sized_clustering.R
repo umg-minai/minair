@@ -3,7 +3,7 @@ test_that("fixed_size_clustering_nearest_neighbor", {
     d <- dist(x)
     expect_error(fixed_size_clustering_nearest_neighbor(x), "dist")
     expect_error(
-        fixed_size_clustering_nearest_neighbor(d, size = 12), "lower than"
+        fixed_size_clustering_nearest_neighbor(d, size = 12), "smaller or equal"
     )
     expect_equal(
         fixed_size_clustering_nearest_neighbor(d, size = 3),
@@ -22,7 +22,7 @@ test_that("fixed_size_clustering_nearest_neighbor", {
 test_that("fixed_size_clustering_kmeans", {
     x <- c(1:3, 1e4, 11:13, 1.1e4, 111:113)
     expect_error(
-        fixed_size_clustering_kmeans(x, size = 12), "lower than"
+        fixed_size_clustering_kmeans(x, size = 12), "smaller or equal"
     )
     expect_equal(
         withr::with_seed(
@@ -55,7 +55,7 @@ test_that("fixed_size_clustering_hclust", {
     d <- dist(x)
     expect_error(fixed_size_clustering_hclust(x), "dist")
     expect_error(
-        fixed_size_clustering_hclust(d, size = 12), "lower than"
+        fixed_size_clustering_hclust(d, size = 12), "smaller or equal"
     )
     expect_equal(
         fixed_size_clustering_hclust(d, size = 3),

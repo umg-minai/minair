@@ -25,9 +25,6 @@ fixed_size_clustering_nearest_neighbor <-
     dist_mat <- as.matrix(d)
     nr <- nrow(dist_mat)
 
-    if (size[1L] > nr)
-        stop("Size of clusters has to be lower than size of 'dist'.")
-
     method <- match.arg(method)
 
     cl <- rep.int(NA_integer_, nr)
@@ -97,9 +94,6 @@ fixed_size_clustering_kmeans <-
     function(x, size, method = c("range", "min", "max")) {
     m <- as.matrix(x)
     nr <- nrow(m)
-
-    if (size[1L] > nr)
-        stop("Size of clusters has to be lower than size of 'dist'.")
 
     cl <- rep.int(NA_integer_, nr)
 
