@@ -13,11 +13,17 @@ Description: R utilities and functions used in the
     the Klinik für Anästhesie, Universitätsmedizin Greifswald.
 License: GPL (>= 3)
 Encoding: UTF-8
+URL: https://github.com/umg-minai/minair/
+BugReports: https://github.com/umg-minai/minair/issues/
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+VignetteBuilder: knitr
 Imports:
     rprojroot
 Suggests:
+    dendextend,
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0),
     withr
 Config/testthat/edition: 3

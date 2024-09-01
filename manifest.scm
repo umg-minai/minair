@@ -2,6 +2,7 @@
   '("r-minimal"
     "r-covr"
     "r-devtools"
+    "r-dendextend"
     "r-roxygen2"
     "r-rprojroot"
     "r-testthat"

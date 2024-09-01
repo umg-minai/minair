@@ -1,0 +1,96 @@
+---
+title: Fixed size clustering
+output:
+    rmarkdown::html_vignette:
+        toc_float: true
+vignette: >
+    %\VignetteIndexEntry{Introduction to fixed size clustering}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+Sys.setenv(LANGUAGE = "en")
+library("minair")
+```
+
+# Fixed size clustering
+
+In general clustering algorithms minimize/maximize some metric in a cluster
+ignoring its size.
+In rare circumstance the size of the clusters has to be similar or fixed.
+Here we demonstrate modified cluster algorithms to support fixed sized clusters.
+
+```{r prepare-data}
+mtx <- scale(iris[, -5])
+dst <- dist(mtx, method = "euclidean")
+```
+
+# clustering
+
+Here we run three different restricted clustering alogrithms against the
+classical partitioning algorithm `kmeans`.
+
+```{r clustering}
+set.seed(123)
+cluster_size <- 40
+
+hcf <- fixed_size_clustering_hclust(dst, size = cluster_size)
+nnf<- fixed_size_clustering_nearest_neighbor(dst, size = cluster_size)
+kmf <- fixed_size_clustering_kmeans(mtx, size = cluster_size)
+kmd <- kmeans(mtx, centers = ceiling(nrow(mtx) / cluster_size))
+```
+
+## Plot dendrogram
+
+```{r plot-dendrogram, message = FALSE}
+library("dendextend")
+
+dend <- as.dendrogram(hclust(dst, method = "ward.D2"))
+cluster_ids <- cbind(
+    "hclust_fixed" = hcf,
+    "nrstnb_fixed" = nnf,
+    "kmeans_fixed" = kmf,
+    "kmeans_default" = kmd$cluster
+)
+
+par(mar = c(8, 4, 4, 2) + .1)
+plot(dend)
+colored_bars(cluster_ids, dend)
+```
+
+## Clustering performance
+
+```{r wcss}
+wss <- sapply(
+    list(hcf, nnf, kmf, kmd$cluster), within_cluster_sum_of_squares, x = mtx
+)
+tss <- total_sum_of_squares(mtx)
+colnames(wss) <- colnames(cluster_ids)
+
+col <- seq_len(ncol(wss))
+barplot(
+    t(wss), col = col, beside = TRUE,
+    main = "Within cluster sum of squares"
+)
+legend("topright", legend = colnames(wss), col = col, pch = 15)
+```
+
+```{r b-tss}
+barplot(
+    1 - colSums(wss) / tss, col = col, horiz = TRUE,
+    main = "Between/Total sum of squares"
+)
+legend(
+    "bottomright",
+    legend = colnames(wss),
+    col = col, pch = 15,
+    bty = "n"
+)
+```
+
+# Session Information
+
+```{r sessionInfo}
+sessionInfo()
+```
