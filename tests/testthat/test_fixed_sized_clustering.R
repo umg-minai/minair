@@ -50,6 +50,23 @@ test_that("fixed_size_clustering_kmeans", {
     )
 })
 
+test_that("fixed_size_clustering_hclust", {
+    x <- c(1:3, 1e4, 11:13, 1.1e4, 111:113)
+    d <- dist(x)
+    expect_error(fixed_size_clustering_hclust(x), "dist")
+    expect_error(
+        fixed_size_clustering_hclust(d, size = 12), "lower than"
+    )
+    expect_equal(
+        fixed_size_clustering_hclust(d, size = 3),
+        c(rep(3L, 3), 1, rep(4L, 3), 1, rep(2L, 3))
+    )
+    expect_equal(
+        fixed_size_clustering_hclust(d, size = length(x)),
+        rep(1, length(x))
+    )
+})
+
 test_that(".distance2center", {
     centers <- matrix(c(1, 2, 3, 1, 2, 3), nrow  = 2, byrow = TRUE)
     m <- matrix(1:3, nrow = 3, ncol = 2)

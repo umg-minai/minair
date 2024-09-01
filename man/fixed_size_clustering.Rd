@@ -3,11 +3,14 @@
 \name{fixed_size_clustering_nearest_neighbor}
 \alias{fixed_size_clustering_nearest_neighbor}
 \alias{fixed_size_clustering_kmeans}
+\alias{fixed_size_clustering_hclust}
 \title{Create clusters of fixed size}
 \usage{
 fixed_size_clustering_nearest_neighbor(d, size, method = c("max", "min"))
 
 fixed_size_clustering_kmeans(x, size, method = c("range", "min", "max"))
+
+fixed_size_clustering_hclust(d, size, method = "ward.D2")
 }
 \arguments{
 \item{d}{\code{dist}, dissimilarity structure as produced by \code{dist}.}
@@ -34,12 +37,19 @@ cluster was filled but we used the current approach for simplicity.
 \code{methods}: \code{min} (\code{max}), start with the closest (farthest) points. \code{range}
 start with the points where the difference in farthest minus nearest distance
 is largest.
+
+\code{fixed_size_clustering_hclust}:
+This algorithm runs \verb{[stats::hclust()]} once to determine the clustering
+and cuts the tree at different heigths to ensure the fixed cluster sizes.
+
+\code{methods}: \code{ward.D2} clustering method, see \verb{[stats::hclust()]} for details.
 }
 \examples{
 x <- c(1:3, 1e4, 11:13, 1.1e4, 111:113)
 d <- dist(x)
 fixed_size_clustering_nearest_neighbor(d, size = 3)
 fixed_size_clustering_kmeans(d, size = 3)
+fixed_size_clustering_hclust(d, size = 3)
 }
 \references{
 Algorithm taken from Jean Monlong

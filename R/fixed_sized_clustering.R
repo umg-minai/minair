@@ -134,6 +134,56 @@ fixed_size_clustering_kmeans <-
     cl
 }
 
+#' @param x `numeric`/`matrix`, points to be clustered.
+#'
+#' @details
+#' `fixed_size_clustering_hclust`:
+#' This algorithm runs `[stats::hclust()]` once to determine the clustering
+#' and cuts the tree at different heigths to ensure the fixed cluster sizes.
+#'
+#' `methods`: `ward.D2` clustering method, see `[stats::hclust()]` for details.
+#'
+#' @importFrom stats hclust
+#' @export
+#' @rdname fixed_size_clustering
+#' @examples
+#' fixed_size_clustering_hclust(d, size = 3)
+fixed_size_clustering_hclust <- function(d, size, method = "ward.D2") {
+    if (!inherits(d, "dist"))
+        stop("'d' has to be a dissimilarity 'dist' structure.")
+
+    hc <- hclust(d, method = method)
+    n <- length(hc$order)
+    cl <- rep.int(NA_integer_, n)
+    mask <- rep.int(0L, n)
+    sizes <- .cluster_size(n, size)
+    cur_cluster <- 1L
+    ncluster <- length(sizes)
+
+    for (k in seq(from = length(cl) - length(sizes), to = 1)) {
+        groups <- cutree(hc, k = k)
+        masked_groups <- groups + mask
+        tbl <- table(masked_groups)
+        imx <- which.max(tbl)
+        if (tbl[imx] >= sizes[cur_cluster]) {
+            p <- head(
+                which(as.numeric(names(tbl)[imx]) == masked_groups),
+                sizes[cur_cluster]
+            )
+            mask[p] <- NA_integer_
+            cl[p] <- cur_cluster
+            cur_cluster <- cur_cluster + 1
+
+            if (cur_cluster == ncluster)
+                break
+        }
+    }
+    ## last cluster
+    cl[is.na(cl)] <- ncluster
+
+    cl
+}
+
 #' Calculate euclidean distance between points and centers
 #'
 #' @param m `matrix`, with points/data.
